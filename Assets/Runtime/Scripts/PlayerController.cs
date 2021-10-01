@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
     private PlayerInput input;
+
+    private Vector3 targetVelocity;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,13 +41,22 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(Vector3.forward * zRot);
     }
 
+    public void Die()
+    {
+        forwardSpeed = 0;
+        rb.velocity = Vector2.zero;
+        GetComponent<BoxCollider2D>().enabled = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private Vector2 MoveForward(Vector2 velocity)
     {
-        return velocity + Vector2.right * forwardSpeed;
+        velocity.x = forwardSpeed;
+        return velocity;
     }
 
     private float RotateDown(float zRot)
     {
-        return Mathf.Max(-180, zRot - rotateDownSpeed * Time.deltaTime);
+        return Mathf.Max(-90, zRot - rotateDownSpeed * Time.deltaTime);
     }
 }
