@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput input;
 
+    public Vector2 Velocity => velocity;
+
     private void Awake()
     {
         input = GetComponent<PlayerInput>();
