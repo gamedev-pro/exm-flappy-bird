@@ -9,22 +9,22 @@ public class PipeCoupleSpawner : MonoBehaviour
 
     [SerializeField] private float maxGapCenterDelta = 10;
 
-    private void Start()
-    {
-        SpawnPipes();
-    }
+    private Pipe bottomPipe;
+    private Pipe topPipe;
+
+    public float Width => bottomPipe.Width;
 
     public void SpawnPipes()
     {
         float gapPosY = transform.position.y + Random.Range(-maxGapCenterDelta, maxGapCenterDelta);
         float gapSize = Random.Range(minGapSize, maxGapSize);
 
-        Pipe bottomPipe = Instantiate(bottomPipePrefab, transform.position, Quaternion.identity, transform);
+        bottomPipe = Instantiate(bottomPipePrefab, transform.position, Quaternion.identity, transform);
         Vector3 bottomPipePos = bottomPipe.transform.position;
         bottomPipePos.y = (gapPosY - gapSize * 0.5f) - (bottomPipe.Head.y - bottomPipe.transform.position.y);
         bottomPipe.transform.position = bottomPipePos;
 
-        Pipe topPipe = Instantiate(topPipePrefab, transform.position, Quaternion.identity, transform);
+        topPipe = Instantiate(topPipePrefab, transform.position, Quaternion.identity, transform);
         Vector3 topPipePos = topPipe.transform.position;
         topPipePos.y = (gapPosY + gapSize * 0.5f) - (topPipe.Head.y - topPipe.transform.position.y);
         topPipe.transform.position = topPipePos;

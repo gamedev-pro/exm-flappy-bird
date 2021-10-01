@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PipeBottom
       objectReference: {fileID: 0}
+    - target: {fileID: 2165282368058511331, guid: 10760bbc49c807e46b491ba093b8c579, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 5412188914524251732}
     - target: {fileID: 2636974797036535872, guid: 10760bbc49c807e46b491ba093b8c579, type: 3}
       propertyPath: m_RootOrder
       value: 1

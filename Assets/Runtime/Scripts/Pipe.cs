@@ -12,6 +12,8 @@ public class Pipe : MonoBehaviour
     private BoxCollider2D col;
     private BoxCollider2D Collider => col == null ? col = GetComponent<BoxCollider2D>() : col;
 
+    public float Width => Collider.bounds.size.x;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
