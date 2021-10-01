@@ -47,4 +47,5 @@ MonoBehaviour:
   topPipePrefab: {fileID: 9102214049651654780, guid: c06e0b426e93c1d43a19145f381837a1, type: 3}
   minGapSize: 3
   maxGapSize: 3
-  maxGapCenterDelta: 2.5
+  minGapCenter: 1.5
+  maxGapCenter: 2.8

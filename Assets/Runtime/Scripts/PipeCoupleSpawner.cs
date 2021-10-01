@@ -7,7 +7,8 @@ public class PipeCoupleSpawner : MonoBehaviour
     [SerializeField] private float minGapSize = 2.5f;
     [SerializeField] private float maxGapSize = 5;
 
-    [SerializeField] private float maxGapCenterDelta = 10;
+    [SerializeField] private float minGapCenter = 1.5f;
+    [SerializeField] private float maxGapCenter = 5f;
 
     private Pipe bottomPipe;
     private Pipe topPipe;
@@ -16,7 +17,7 @@ public class PipeCoupleSpawner : MonoBehaviour
 
     public void SpawnPipes()
     {
-        float gapPosY = transform.position.y + Random.Range(-maxGapCenterDelta, maxGapCenterDelta);
+        float gapPosY = transform.position.y + Random.Range(-minGapCenter, maxGapCenter);
         float gapSize = Random.Range(minGapSize, maxGapSize);
 
         bottomPipe = Instantiate(bottomPipePrefab, transform.position, Quaternion.identity, transform);
@@ -33,8 +34,8 @@ public class PipeCoupleSpawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        DrawGap(transform.position + Vector3.up * maxGapCenterDelta);
-        DrawGap(transform.position - Vector3.up * maxGapCenterDelta);
+        DrawGap(transform.position + Vector3.up * maxGapCenter);
+        DrawGap(transform.position - Vector3.up * minGapCenter);
     }
 
     private void DrawGap(Vector3 position)

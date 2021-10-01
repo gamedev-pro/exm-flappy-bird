@@ -8,6 +8,12 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     [SerializeField] private Camera mainCamera;
 
+    [SerializeField] private SpriteRenderer[] grounds;
+    [SerializeField] private float groundCenterDistance = 9;
+
+    [Space]
+    [Header("Pipes")]
+
     [SerializeField] private PipeCoupleSpawner pipeSpawnerPrefab;
 
     [SerializeField] private float initialDistanceWithoutPipes;
@@ -45,6 +51,20 @@ public class EndlessPipeGenerator : MonoBehaviour
                     Destroy(pipes[i].gameObject);
                 }
                 pipes.RemoveRange(0, lastIndexToRemove + 1);
+            }
+        }
+
+        int lastIndex = grounds.Length - 1;
+        for (int i = lastIndex; i >= 0; i--)
+        {
+            SpriteRenderer ground = grounds[i];
+
+            if (player.transform.position.x > ground.bounds.min.x && !IsBoxVisible(ground.bounds.center, ground.bounds.size.x))
+            {
+                SpriteRenderer lastGround = grounds[lastIndex];
+                ground.transform.position = lastGround.transform.position + Vector3.right * ground.bounds.size.x;
+                grounds[i] = lastGround;
+                grounds[lastIndex] = ground;
             }
         }
     }
@@ -90,16 +110,26 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     private bool IsPipeVisible(PipeCoupleSpawner pipe)
     {
-        Vector3 startPipe = pipe.transform.position - Vector3.right * pipe.Width * 0.5f;
-        Vector3 endPipe = pipe.transform.position + Vector3.right * pipe.Width * 0.5f;
-
-        Debug.Log($"{pipe.name}, {mainCamera.WorldToViewportPoint(startPipe)}, {mainCamera.WorldToViewportPoint(endPipe)}");
-        return IsPointInCameraFrustum(startPipe) || IsPointInCameraFrustum(endPipe);
+        return IsBoxVisible(pipe.transform.position, pipe.Width);
     }
 
-    private bool IsPointInCameraFrustum(Vector3 point)
+    private bool IsBoxVisible(Vector3 center, float width)
     {
-        Vector3 clipPos = mainCamera.WorldToViewportPoint(point);
-        return clipPos.z > 0 && clipPos.x >= 0 && clipPos.x <= 1;
+        Vector3 left = center - Vector3.right * width * 0.5f;
+        Vector3 right = center + Vector3.right * width * 0.5f;
+
+        Vector3 leftClipPos = mainCamera.WorldToViewportPoint(left);
+        Vector3 rightClipPos = mainCamera.WorldToViewportPoint(right);
+
+        return !(leftClipPos.x > 1 || rightClipPos.x < 0);
+    }
+
+    private void OnDrawGizmos()
+    {
+        foreach (var ground in grounds)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(ground.transform.position, ground.bounds.size);
+        }
     }
 }
