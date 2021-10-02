@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7234084688679931731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7234084688679931729}
+  - component: {fileID: 7234084688679931728}
+  - component: {fileID: 7234084688679931734}
+  - component: {fileID: 7234084688679931735}
+  m_Layer: 0
+  m_Name: GameMode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7234084688679931729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234084688679931731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7234084688679931728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234084688679931731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0cc9824ca811bc4d8020091e5788d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  pipeGenerator: {fileID: 0}
+  gameSaver: {fileID: 7234084688679931734}
+  screenController: {fileID: 0}
+  audioService: {fileID: 0}
+  gameRunningParameters: {fileID: 11400000, guid: 06f8b09dddc6e2a46a93a3d6d7a8abdb, type: 2}
+  waitingGameStartParameters: {fileID: 11400000, guid: 3712c0fed77010a44ad1b32c340fd37f, type: 2}
+  gameOverParameters: {fileID: 11400000, guid: 8e94d305d3b082e4e88658a92657bc3b, type: 2}
+  fallAudio: {fileID: 8300000, guid: a6d50d7fb67e1c744a3b845b44a0cfcc, type: 3}
+  fallAudioDelay: 0.3
+--- !u!114 &7234084688679931734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234084688679931731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f006fb1624a284889c7529a2ac4b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7234084688679931735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234084688679931731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021c5f4f675adbe47a0e33082b88187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalsSettings: {fileID: 11400000, guid: e18c9624315fb8245b49f24a0e2f92a0, type: 2}

@@ -98,6 +98,6 @@ public class GameMode : MonoBehaviour
 
     public void IncrementScore()
     {
-        Score += 31;
+        Score++;
     }
 }
