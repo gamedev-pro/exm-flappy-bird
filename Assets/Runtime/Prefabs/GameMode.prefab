@@ -55,6 +55,8 @@ MonoBehaviour:
   gameOverParameters: {fileID: 11400000, guid: 8e94d305d3b082e4e88658a92657bc3b, type: 2}
   fallAudio: {fileID: 8300000, guid: a6d50d7fb67e1c744a3b845b44a0cfcc, type: 3}
   fallAudioDelay: 0.3
+  fadeScreen: {fileID: 0}
+  fadeTime: 0.2
 --- !u!114 &7234084688679931734
 MonoBehaviour:
   m_ObjectHideFlags: 0
