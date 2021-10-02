@@ -6,14 +6,6 @@ public class ScreenController : MonoBehaviour
     [SerializeField]
     private GameObject[] screens;
 
-    [Space]
-    [Header("TEMPORARY")]
-    [SerializeField]
-    private string InGameHudScreenName = "InGameHudScreen";
-
-    [SerializeField]
-    private string PauseScreenName = "PauseScreen";
-
     private GameObject currentScreen;
 
     private void Awake()
@@ -37,6 +29,11 @@ public class ScreenController : MonoBehaviour
     public void ShowWaitGameStartScreen()
     {
         ShowScreen(FindScreenWithComponent(typeof(WaitGameStartScreen)));
+    }
+
+    public void ShowGameOverScreen()
+    {
+        ShowScreen(FindScreenWithComponent(typeof(GameOverScreen)));
     }
 
     private void ShowScreen(GameObject screen)

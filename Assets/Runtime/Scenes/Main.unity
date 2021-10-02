@@ -133,11 +133,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4371874569048149360, guid: b0f4ec857ecc77f4d976929ce4042d37, type: 3}
   m_PrefabInstance: {fileID: 4371874569154815417}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &504305940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8079534580881799573, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
-  m_PrefabInstance: {fileID: 4568428522114271127}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &513302210
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +616,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1385321795}
   - component: {fileID: 1385321794}
+  - component: {fileID: 1385321796}
+  - component: {fileID: 1385321797}
   m_Layer: 0
   m_Name: GameMode
   m_TagString: Untagged
@@ -642,6 +639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 513302212}
   pipeGenerator: {fileID: 2055847911}
+  gameSaver: {fileID: 1385321796}
   screenController: {fileID: 667747859}
   audioService: {fileID: 2020324229}
   gameRunningParameters: {fileID: 11400000, guid: 06f8b09dddc6e2a46a93a3d6d7a8abdb, type: 2}
@@ -663,6 +661,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385321796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385321793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f006fb1624a284889c7529a2ac4b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1385321797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385321793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 021c5f4f675adbe47a0e33082b88187a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  medalsSettings: {fileID: 11400000, guid: e18c9624315fb8245b49f24a0e2f92a0, type: 2}
 --- !u!1 &1412162874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,14 +1321,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1997481344}
     m_Modifications:
-    - target: {fileID: 4568428522706518404, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
-      propertyPath: screens.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4568428522706518404, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
-      propertyPath: screens.Array.data[2]
+    - target: {fileID: 4568428521117694323, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
+      propertyPath: gameMode
       value: 
-      objectReference: {fileID: 504305940}
+      objectReference: {fileID: 1385321794}
+    - target: {fileID: 4568428521117694323, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
+      propertyPath: medalRewardsCalculator
+      value: 
+      objectReference: {fileID: 1385321797}
     - target: {fileID: 4568428522706518405, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -83,6 +83,6 @@ public class PlayerController : MonoBehaviour
     public void OnHitGround()
     {
         IsOnGroud = true;
-        gameMode.OnHitGround();
+        enabled = false;
     }
 }

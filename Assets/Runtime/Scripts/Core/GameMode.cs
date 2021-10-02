@@ -2,11 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class GameMode : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private EndlessPipeGenerator pipeGenerator;
+
+    [SerializeField] private GameSaver gameSaver;
 
     [SerializeField] private ScreenController screenController;
 
@@ -25,9 +31,11 @@ public class GameMode : MonoBehaviour
     private bool isGameRunning;
 
     public int Score { get; private set; }
+    public int BestScore => gameSaver.CurrentSave.HighestScore < Score ? Score : gameSaver.CurrentSave.HighestScore;
 
     private void Awake()
     {
+        gameSaver.LoadGame();
         playerController.MovementParameters = waitingGameStartParameters;
         screenController.ShowWaitGameStartScreen();
         AudioUtility.AudioService = audioService;
@@ -57,11 +65,16 @@ public class GameMode : MonoBehaviour
     public void GameOver()
     {
         playerController.MovementParameters = gameOverParameters;
+        gameSaver.SaveGame(new SaveGameData
+        {
+            HighestScore = BestScore
+        });
         StartCoroutine(GameOverCor());
     }
 
     private IEnumerator GameOverCor()
     {
+        screenController.ShowGameOverScreen();
         yield return new WaitForSeconds(fallAudioDelay);
         if (!playerController.IsOnGroud)
         {
@@ -69,20 +82,22 @@ public class GameMode : MonoBehaviour
         }
     }
 
-    private IEnumerator ReloadGameCor()
+    public void ReloadGame()
     {
-        playerController.enabled = false;
-        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void OnHitGround()
+    public void QuitGame()
     {
-        StartCoroutine(ReloadGameCor());
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     public void IncrementScore()
     {
-        Score++;
+        Score += 31;
     }
 }
