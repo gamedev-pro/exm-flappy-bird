@@ -1,20 +1,15 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float forwardSpeed = 10;
-    [SerializeField] private float flapVelocity = 10;
+    [SerializeField] private GameMode gameMode;
 
-    [SerializeField] private float gravity = 1.8f * 9.8f;
-
-    [SerializeField]
-    [Range(0, 180)]
-    private float flapAngleDegress = 20;
+    [field: SerializeField]
+    public PlayerMovementParameters MovementParameters { get; set; }
 
     [SerializeField]
-    private float rotateDownSpeed = 5;
+    private AudioClip flapClip;
 
     private Vector3 velocity;
     private float zRot;
@@ -22,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private PlayerInput input;
 
     public Vector2 Velocity => velocity;
+
+    public bool IsDead { get; private set; }
+
+    public bool IsOnGroud { get; private set; }
 
     private void Awake()
     {
@@ -39,37 +38,51 @@ public class PlayerController : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    private float ProcessInput()
+    private void ProcessInput()
     {
         if (input.TapUp())
         {
-            velocity.y = flapVelocity;
-            zRot = flapAngleDegress;
+            Flap();
         }
+    }
 
-        return zRot;
+    public void Flap()
+    {
+        velocity.y = MovementParameters.FlapVelocity;
+        zRot = MovementParameters.FlapAngleDegress;
+        AudioUtility.PlayAudioCue(flapClip);
     }
 
     private void ModifyVelocity()
     {
-        velocity.x = forwardSpeed;
-        velocity.y -= gravity * Time.deltaTime;
+        velocity.x = MovementParameters.ForwardSpeed;
+        velocity.y -= MovementParameters.Gravity * Time.deltaTime;
     }
 
     private void RotateDown()
     {
         if (velocity.y < 0)
         {
-            zRot -= rotateDownSpeed * Time.deltaTime;
+            zRot -= MovementParameters.RotateDownSpeed * Time.deltaTime;
             zRot = Mathf.Max(-90, zRot);
         }
     }
 
     public void Die()
     {
-        forwardSpeed = 0;
-        velocity = Vector3.zero;
-        GetComponent<BoxCollider2D>().enabled = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (!IsDead)
+        {
+            IsDead = true;
+            input.enabled = false;
+            velocity = Vector3.zero;
+            GetComponent<PlayerAnimationController>().Die();
+            gameMode.GameOver();
+        }
+    }
+
+    public void OnHitGround()
+    {
+        IsOnGroud = true;
+        gameMode.OnHitGround();
     }
 }

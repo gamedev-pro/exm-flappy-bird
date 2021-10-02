@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a280ce3e6441cf4d83f8aeea5cb608a, type: 3}
+  m_Name: MovementParams_GameOver
+  m_EditorClassIdentifier: 
+  <ForwardSpeed>k__BackingField: 0
+  <FlapVelocity>k__BackingField: 0
+  <Gravity>k__BackingField: 40
+  FlapAngleDegress: 0
+  RotateDownSpeed: 150
