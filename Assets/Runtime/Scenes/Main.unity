@@ -654,10 +654,6 @@ PrefabInstance:
       propertyPath: medalRewardsCalculator
       value: 
       objectReference: {fileID: 1385321797}
-    - target: {fileID: 4568428521117694325, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4568428522706518405, guid: 3d851e360411fc744a23d60cb4dbface, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
