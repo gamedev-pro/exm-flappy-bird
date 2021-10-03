@@ -13,10 +13,7 @@ public class PipeCoupleSpawner : MonoBehaviour
     private Pipe bottomPipe;
     private Pipe topPipe;
 
-    private void Awake()
-    {
-        SpawnPipes();
-    }
+    public float Width => bottomPipe.Width;
 
     public void SpawnPipes()
     {
