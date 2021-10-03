@@ -10,7 +10,6 @@ public class EndlessPipeGenerator : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     [SerializeField] private SpriteRenderer[] grounds;
-    [SerializeField] private float groundCenterDistance = 9;
 
     [Space]
     [Header("Pipes")]
@@ -36,6 +35,29 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     private void Update()
     {
+        UpdatePipes();
+        UpdateGround();
+    }
+
+    private void UpdateGround()
+    {
+        int lastIndex = grounds.Length - 1;
+        for (int i = lastIndex; i >= 0; i--)
+        {
+            SpriteRenderer ground = grounds[i];
+
+            if (player.transform.position.x > ground.bounds.min.x && !IsBoxVisible(ground.bounds.center, ground.bounds.size.x))
+            {
+                SpriteRenderer lastGround = grounds[lastIndex];
+                ground.transform.position = lastGround.transform.position + Vector3.right * ground.bounds.size.x;
+                grounds[i] = lastGround;
+                grounds[lastIndex] = ground;
+            }
+        }
+    }
+
+    private void UpdatePipes()
+    {
         if (pipes.Count > 0)
         {
             PipeCoupleSpawner lastPipe = pipes[pipes.Count - 1];
@@ -52,20 +74,6 @@ public class EndlessPipeGenerator : MonoBehaviour
                     Destroy(pipes[i].gameObject);
                 }
                 pipes.RemoveRange(0, lastIndexToRemove + 1);
-            }
-        }
-
-        int lastIndex = grounds.Length - 1;
-        for (int i = lastIndex; i >= 0; i--)
-        {
-            SpriteRenderer ground = grounds[i];
-
-            if (player.transform.position.x > ground.bounds.min.x && !IsBoxVisible(ground.bounds.center, ground.bounds.size.x))
-            {
-                SpriteRenderer lastGround = grounds[lastIndex];
-                ground.transform.position = lastGround.transform.position + Vector3.right * ground.bounds.size.x;
-                grounds[i] = lastGround;
-                grounds[lastIndex] = ground;
             }
         }
     }

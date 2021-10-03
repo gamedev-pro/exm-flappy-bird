@@ -32,8 +32,6 @@ public class GameMode : MonoBehaviour
     [SerializeField] private FadeScreen fadeScreen;
     [SerializeField] private float fadeTime = 0.5f;
 
-    private bool isGameRunning;
-
     public int Score { get; private set; }
     public int BestScore => gameSaver.CurrentSave.HighestScore < Score ? Score : gameSaver.CurrentSave.HighestScore;
 
@@ -52,7 +50,6 @@ public class GameMode : MonoBehaviour
         playerController.Flap();
         pipeGenerator.StartPipeSpawn();
         screenController.ShowInGameHud();
-        isGameRunning = true;
     }
 
     public void PauseGame()
