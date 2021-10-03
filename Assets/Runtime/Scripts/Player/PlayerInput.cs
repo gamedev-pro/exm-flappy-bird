@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
         for (int i = 0; i < Input.touchCount; i++)
         {
-            if (Input.GetTouch(i).phase == TouchPhase.Ended)
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
             {
                 return true;
             }
