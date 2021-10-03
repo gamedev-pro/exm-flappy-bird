@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,5 +11,10 @@ public class InGameHudScreen : MonoBehaviour
     private void LateUpdate()
     {
         scoreText.text = gameMode.Score.ToString();
+    }
+
+    public void OnPauseButtonClicked()
+    {
+        gameMode.PauseGame();
     }
 }

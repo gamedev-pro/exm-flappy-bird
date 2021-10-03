@@ -136,3 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e4ae8106be9f1419dc373a83190d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frozenParams: {fileID: 11400000, guid: ba86848f3ccd43e4ca662d709e128dff, type: 2}

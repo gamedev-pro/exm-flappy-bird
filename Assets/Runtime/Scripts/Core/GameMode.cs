@@ -2,23 +2,34 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class GameMode : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private EndlessPipeGenerator pipeGenerator;
 
+    [SerializeField] private GameSaver gameSaver;
+
     [SerializeField] private ScreenController screenController;
 
     [Header("Data")]
     [SerializeField] private PlayerMovementParameters gameRunningParameters;
+    [SerializeField] private PlayerMovementParameters waitingGameStartParameters;
+
     [SerializeField] private PlayerMovementParameters gameOverParameters;
 
     public int Score { get; private set; }
+    public int BestScore => gameSaver.CurrentSave.HighestScore < Score ? Score : gameSaver.CurrentSave.HighestScore;
 
     private void Awake()
     {
-        StartGame();
+        gameSaver.LoadGame();
+        playerController.MovementParameters = waitingGameStartParameters;
+        screenController.ShowWaitGameStartScreen();
     }
 
     public void StartGame()
@@ -29,16 +40,40 @@ public class GameMode : MonoBehaviour
         screenController.ShowInGameHud();
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        screenController.ShowPauseScreen();
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        screenController.ShowInGameHud();
+    }
+
     public void GameOver()
     {
         playerController.MovementParameters = gameOverParameters;
-        StartCoroutine(GameOverCor());
+        gameSaver.SaveGame(new SaveGameData
+        {
+            HighestScore = BestScore
+        });
+        screenController.ShowGameOverScreen();
     }
 
-    private IEnumerator GameOverCor()
+    public void ReloadGame()
     {
-        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
     }
 
     public void IncrementScore()

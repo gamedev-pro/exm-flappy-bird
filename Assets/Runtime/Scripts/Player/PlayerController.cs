@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public bool IsDead { get; private set; }
 
+    public bool IsOnGroud { get; private set; }
+
     private void Awake()
     {
         input = GetComponent<PlayerInput>();
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessInput()
     {
-        if (input.TapUp())
+        if (input.Tap())
         {
             Flap();
         }
@@ -77,5 +79,11 @@ public class PlayerController : MonoBehaviour
     public void IncrementScore()
     {
         gameMode.IncrementScore();
+    }
+
+    public void OnHitGround()
+    {
+        IsOnGroud = true;
+        enabled = false;
     }
 }

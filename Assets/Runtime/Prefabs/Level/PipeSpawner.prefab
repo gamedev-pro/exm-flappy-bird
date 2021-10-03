@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7945554559339679512}
+  - {fileID: 508284675942772865}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   maxGapSize: 3
   minGapCenter: 1.5
   maxGapCenter: 2.8
---- !u!1 &3531843441582636743
+--- !u!1 &2604706368750883690
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,23 +58,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7945554559339679512}
-  - component: {fileID: 7810016504637003001}
-  - component: {fileID: 4859180325981241779}
+  - component: {fileID: 508284675942772865}
+  - component: {fileID: 2293867225543901826}
+  - component: {fileID: 5962133888628625987}
   m_Layer: 0
-  m_Name: ScoreTrigger
+  m_Name: TriggerScoreIncrement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7945554559339679512
+--- !u!4 &508284675942772865
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3531843441582636743}
+  m_GameObject: {fileID: 2604706368750883690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -82,17 +82,17 @@ Transform:
   m_Father: {fileID: 420303708919352373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7810016504637003001
+--- !u!61 &2293867225543901826
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3531843441582636743}
+  m_GameObject: {fileID: 2604706368750883690}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1.29, y: 0.7789781}
@@ -106,15 +106,15 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 14.03077}
+  m_Size: {x: 1, y: 14.030771}
   m_EdgeRadius: 0
---- !u!114 &4859180325981241779
+--- !u!114 &5962133888628625987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3531843441582636743}
+  m_GameObject: {fileID: 2604706368750883690}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46deb71d63a3f4d42b607e8628b3acc4, type: 3}

@@ -21,6 +21,21 @@ public class ScreenController : MonoBehaviour
         ShowScreen(FindScreenWithComponent(typeof(InGameHudScreen)));
     }
 
+    public void ShowPauseScreen()
+    {
+        ShowScreen(FindScreenWithComponent(typeof(PauseScreen)));
+    }
+
+    public void ShowWaitGameStartScreen()
+    {
+        ShowScreen(FindScreenWithComponent(typeof(WaitGameStartScreen)));
+    }
+
+    public void ShowGameOverScreen()
+    {
+        ShowScreen(FindScreenWithComponent(typeof(GameOverScreen)));
+    }
+
     private void ShowScreen(GameObject screen)
     {
         CloseCurrent();

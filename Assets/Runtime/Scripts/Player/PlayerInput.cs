@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public bool TapUp()
+    public bool Tap()
     {
         if (!enabled)
         {

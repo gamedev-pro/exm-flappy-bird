@@ -54,7 +54,7 @@ MonoBehaviour:
   initialDistanceWithoutPipes: 8
   minPipesInFrontOfPlayer: 2
   minDistanceBetweenPipes: 5.5
-  maxDistanceBetweenPipes: 5.5
+  maxDistanceBetweenPipes: 7.5
 --- !u!1001 &4893941318459194114
 PrefabInstance:
   m_ObjectHideFlags: 0
