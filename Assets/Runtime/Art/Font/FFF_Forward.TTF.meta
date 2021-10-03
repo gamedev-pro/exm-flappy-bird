@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9cd7486fdc56364fbaec233bcf513d2
+guid: 77af55f705998fe45a6c53dcc2345011
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,6 +8,7 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: FFF Forward
   fontNames:
   - FFF Forward
   fallbackFontReferences: []

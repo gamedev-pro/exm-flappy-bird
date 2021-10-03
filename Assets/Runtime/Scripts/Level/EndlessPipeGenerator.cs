@@ -25,11 +25,6 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     private List<PipeCoupleSpawner> pipes = new List<PipeCoupleSpawner>();
 
-    private void Awake()
-    {
-        StartPipeSpawn();
-    }
-
     public void StartPipeSpawn()
     {
         SpawnPipe(player.transform.position + Vector3.right * initialDistanceWithoutPipes);
@@ -69,7 +64,7 @@ public class EndlessPipeGenerator : MonoBehaviour
                 SpawnPipes(minPipesInFrontOfPlayer);
             }
 
-            int lastIndexToRemove = FinddLastPipeIndexToRemove();
+            int lastIndexToRemove = FindLastPipeIndexToRemove();
             if (lastIndexToRemove >= 0)
             {
                 for (int i = 0; i <= lastIndexToRemove; i++)
@@ -106,7 +101,7 @@ public class EndlessPipeGenerator : MonoBehaviour
         return pipe;
     }
 
-    private int FinddLastPipeIndexToRemove()
+    private int FindLastPipeIndexToRemove()
     {
         for (int i = pipes.Count - 1; i >= 0; i--)
         {

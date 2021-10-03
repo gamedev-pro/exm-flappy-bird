@@ -1,21 +1,12 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float forwardSpeed = 10;
-    [SerializeField] private float flapVelocity = 10;
+    [SerializeField] private GameMode gameMode;
 
-    [SerializeField] private float gravity = 1.8f * 9.8f;
-
-    [SerializeField]
-    [Range(0, 180)]
-    private float flapAngleDegress = 20;
-
-    [SerializeField]
-    private float rotateDownSpeed = 5;
+    [field: SerializeField]
+    public PlayerMovementParameters MovementParameters { get; set; }
 
     private Vector3 velocity;
     private float zRot;
@@ -52,21 +43,21 @@ public class PlayerController : MonoBehaviour
 
     public void Flap()
     {
-        velocity.y = flapVelocity;
-        zRot = flapAngleDegress;
+        velocity.y = MovementParameters.FlapVelocity;
+        zRot = MovementParameters.FlapAngleDegress;
     }
 
     private void ModifyVelocity()
     {
-        velocity.x = forwardSpeed;
-        velocity.y -= gravity * Time.deltaTime;
+        velocity.x = MovementParameters.ForwardSpeed;
+        velocity.y -= MovementParameters.Gravity * Time.deltaTime;
     }
 
     private void RotateDown()
     {
         if (velocity.y < 0)
         {
-            zRot -= rotateDownSpeed * Time.deltaTime;
+            zRot -= MovementParameters.RotateDownSpeed * Time.deltaTime;
             zRot = Mathf.Max(-90, zRot);
         }
     }
@@ -76,23 +67,15 @@ public class PlayerController : MonoBehaviour
         if (!IsDead)
         {
             IsDead = true;
-            forwardSpeed = 0;
-            flapVelocity = 0;
             input.enabled = false;
             velocity = Vector3.zero;
-            PlayerAnimationController animController = GetComponent<PlayerAnimationController>();
-            if (animController != null)
-            {
-                animController.Die();
-            }
-
-            StartCoroutine(TEMP_ReloadGame());
+            GetComponent<PlayerAnimationController>().Die();
+            gameMode.GameOver();
         }
     }
 
-    private IEnumerator TEMP_ReloadGame()
+    public void IncrementScore()
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameMode.IncrementScore();
     }
 }
