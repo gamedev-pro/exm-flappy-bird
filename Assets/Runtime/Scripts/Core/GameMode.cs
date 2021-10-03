@@ -39,14 +39,16 @@ public class GameMode : MonoBehaviour
     {
         gameSaver.LoadGame();
         playerController.MovementParameters = waitingGameStartParameters;
-        screenController.ShowWaitGameStartScreen();
         AudioUtility.AudioService = audioService;
+
         StartCoroutine(fadeScreen.FadeOut(fadeTime, Color.black));
+        screenController.ShowWaitGameStartScreen();
     }
 
     public void StartGame()
     {
         playerController.MovementParameters = gameRunningParameters;
+        playerController.Flap();
         pipeGenerator.StartPipeSpawn();
         screenController.ShowInGameHud();
     }

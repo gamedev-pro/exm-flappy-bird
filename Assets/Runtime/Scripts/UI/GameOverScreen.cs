@@ -71,8 +71,13 @@ public class GameOverScreen : MonoBehaviour
     private IEnumerator Show()
     {
         gameOverContainer.alpha = 0;
+        gameOverContainer.blocksRaycasts = false;
+
         statsContainer.alpha = 0;
+        statsContainer.blocksRaycasts = false;
+
         buttonsContanier.alpha = 0;
+        buttonsContanier.blocksRaycasts = false;
 
         yield return StartCoroutine(
             AnimateCanvasGroup(
@@ -103,11 +108,12 @@ public class GameOverScreen : MonoBehaviour
     private IEnumerator AnimateCanvasGroup(CanvasGroup group, Vector3 from, Vector3 to, float time)
     {
         group.alpha = 0;
+        group.blocksRaycasts = false;
         Tween fadeTween = group.DOFade(1, time);
         group.transform.position = from;
         Tween transformTween = group.transform.DOMove(to, time);
 
         yield return fadeTween.WaitForKill();
-        yield return transformTween.WaitForKill();
+        group.blocksRaycasts = true;
     }
 }
