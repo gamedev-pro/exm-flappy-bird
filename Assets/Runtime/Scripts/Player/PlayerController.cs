@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,13 +22,16 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput input;
 
-    public Vector3 Velocity => velocity;
+    public Vector2 Velocity => velocity;
+
+    public bool IsDead { get; private set; }
 
     private void Awake()
     {
         input = GetComponent<PlayerInput>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         ModifyVelocity();
@@ -38,15 +42,18 @@ public class PlayerController : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    private float ProcessInput()
+    private void ProcessInput()
     {
         if (input.TapUp())
         {
-            velocity.y = flapVelocity;
-            zRot = flapAngleDegress;
+            Flap();
         }
+    }
 
-        return zRot;
+    public void Flap()
+    {
+        velocity.y = flapVelocity;
+        zRot = flapAngleDegress;
     }
 
     private void ModifyVelocity()
@@ -62,5 +69,30 @@ public class PlayerController : MonoBehaviour
             zRot -= rotateDownSpeed * Time.deltaTime;
             zRot = Mathf.Max(-90, zRot);
         }
+    }
+
+    public void Die()
+    {
+        if (!IsDead)
+        {
+            IsDead = true;
+            forwardSpeed = 0;
+            flapVelocity = 0;
+            input.enabled = false;
+            velocity = Vector3.zero;
+            PlayerAnimationController animController = GetComponent<PlayerAnimationController>();
+            if (animController != null)
+            {
+                animController.Die();
+            }
+
+            StartCoroutine(TEMP_ReloadGame());
+        }
+    }
+
+    private IEnumerator TEMP_ReloadGame()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

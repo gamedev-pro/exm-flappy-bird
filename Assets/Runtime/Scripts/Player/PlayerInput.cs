@@ -4,6 +4,11 @@ public class PlayerInput : MonoBehaviour
 {
     public bool TapUp()
     {
+        if (!enabled)
+        {
+            return false;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             return true;
