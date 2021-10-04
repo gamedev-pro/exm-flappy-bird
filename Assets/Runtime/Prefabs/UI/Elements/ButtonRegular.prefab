@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8620818590787301912}
   - component: {fileID: 595592731696862642}
   - component: {fileID: 9092968791744900636}
+  - component: {fileID: 1602717169875934390}
   m_Layer: 5
   m_Name: ButtonRegular
   m_TagString: Untagged
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1602717169875934390}
         m_TargetAssemblyTypeName: AudioCue, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -132,3 +133,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1602717169875934390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597002140064809464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198e153256541154a932849736f42714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cue: {fileID: 8300000, guid: 46eac77d1e8b72b40ab98d7ce1b0ccb5, type: 3}

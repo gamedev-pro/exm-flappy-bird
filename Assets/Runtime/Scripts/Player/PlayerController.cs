@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField]
     public PlayerMovementParameters MovementParameters { get; set; }
 
+    [SerializeField]
+    private AudioClip flapClip;
+
     private Vector3 velocity;
     private float zRot;
 
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessInput()
     {
-        if (input.Tap())
+        if (input.TapUp())
         {
             Flap();
         }
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         velocity.y = MovementParameters.FlapVelocity;
         zRot = MovementParameters.FlapAngleDegress;
+        AudioUtility.PlayAudioCue(flapClip);
     }
 
     private void ModifyVelocity()

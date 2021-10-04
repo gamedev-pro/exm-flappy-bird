@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ScoreIncrementTrigger : MonoBehaviour
 {
+    [SerializeField] private AudioClip scoreIncrementCue;
+
     private void Awake()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -14,6 +16,7 @@ public class ScoreIncrementTrigger : MonoBehaviour
         if (player != null)
         {
             player.IncrementScore();
+            AudioUtility.PlayAudioCue(scoreIncrementCue);
         }
     }
 }

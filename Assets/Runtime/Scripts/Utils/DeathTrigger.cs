@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DeathTrigger : MonoBehaviour
 {
+    [SerializeField] private AudioClip hitCue;
     private void Awake()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -14,6 +15,7 @@ public class DeathTrigger : MonoBehaviour
         if (player != null && !player.IsDead)
         {
             player.Die();
+            AudioUtility.PlayAudioCue(hitCue);
         }
     }
 }

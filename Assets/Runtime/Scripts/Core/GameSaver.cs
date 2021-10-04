@@ -32,11 +32,4 @@ public class GameSaver : MonoBehaviour
             HighestScore = PlayerPrefs.GetInt(HighestScoreKey, 0),
         };
     }
-
-    public void DeleteAllData()
-    {
-        PlayerPrefs.DeleteAll();
-        CurrentSave = null;
-        LoadGame();
-    }
 }

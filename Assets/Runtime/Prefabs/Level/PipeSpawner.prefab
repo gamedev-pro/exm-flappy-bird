@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46deb71d63a3f4d42b607e8628b3acc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreIncrementCue: {fileID: 8300000, guid: b7a84269d24c88741b6d742990516042, type: 3}
