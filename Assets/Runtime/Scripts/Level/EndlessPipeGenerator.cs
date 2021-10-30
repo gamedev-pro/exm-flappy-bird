@@ -12,7 +12,7 @@ public class EndlessPipeGenerator : MonoBehaviour
     [Space]
     [Header("Pipes")]
 
-    [SerializeField] private PipeCoupleSpawner pipeSpawnerPrefab;
+    [SerializeField] private Pool<PipeCoupleSpawner> pipePool;
 
     [SerializeField] private float initialDistanceWithoutPipes;
 
@@ -24,6 +24,11 @@ public class EndlessPipeGenerator : MonoBehaviour
     [SerializeField] private float maxDistanceBetweenPipes;
 
     private List<PipeCoupleSpawner> pipes = new List<PipeCoupleSpawner>();
+
+    private void Awake()
+    {
+        pipePool.Initialize();
+    }
 
     public void StartPipeSpawn()
     {
@@ -69,7 +74,7 @@ public class EndlessPipeGenerator : MonoBehaviour
             {
                 for (int i = 0; i <= lastIndexToRemove; i++)
                 {
-                    Destroy(pipes[i].gameObject);
+                    pipePool.ReturnToPool(pipes[i]);
                 }
                 pipes.RemoveRange(0, lastIndexToRemove + 1);
             }
@@ -94,10 +99,9 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     private PipeCoupleSpawner SpawnPipe(Vector2 position)
     {
-        PipeCoupleSpawner pipe = Instantiate(pipeSpawnerPrefab, position, Quaternion.identity, transform);
+        PipeCoupleSpawner pipe = pipePool.GetFromPool(position, Quaternion.identity, transform);
         pipe.name = $"PipeSpawner {pipes.Count}";
         pipes.Add(pipe);
-        pipe.SpawnPipes();
         return pipe;
     }
 

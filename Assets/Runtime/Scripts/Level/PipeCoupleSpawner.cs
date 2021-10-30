@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PipeCoupleSpawner : MonoBehaviour
+public class PipeCoupleSpawner : MonoBehaviour, IPooledObject
 {
     [SerializeField] private Pipe bottomPipePrefab;
     [SerializeField] private Pipe topPipePrefab;
@@ -15,17 +15,15 @@ public class PipeCoupleSpawner : MonoBehaviour
 
     public float Width => bottomPipe.Width;
 
-    public void SpawnPipes()
+    private void RandomizePipes()
     {
         float gapPosY = transform.position.y + Random.Range(-minGapCenter, maxGapCenter);
         float gapSize = Random.Range(minGapSize, maxGapSize);
 
-        bottomPipe = Instantiate(bottomPipePrefab, transform.position, Quaternion.identity, transform);
         Vector3 bottomPipePos = bottomPipe.transform.position;
         bottomPipePos.y = (gapPosY - gapSize * 0.5f) - (bottomPipe.Head.y - bottomPipe.transform.position.y);
         bottomPipe.transform.position = bottomPipePos;
 
-        topPipe = Instantiate(topPipePrefab, transform.position, Quaternion.identity, transform);
         Vector3 topPipePos = topPipe.transform.position;
         topPipePos.y = (gapPosY + gapSize * 0.5f) - (topPipe.Head.y - topPipe.transform.position.y);
         topPipe.transform.position = topPipePos;
@@ -42,5 +40,20 @@ public class PipeCoupleSpawner : MonoBehaviour
     {
         Gizmos.DrawCube(position, Vector3.one * 0.5f);
         Gizmos.DrawLine(position - Vector3.up * maxGapSize * 0.5f, position + Vector3.up * maxGapSize * 0.5f);
+    }
+
+    public void OnInstantiated()
+    {
+        bottomPipe = Instantiate(bottomPipePrefab, transform.position, Quaternion.identity, transform);
+        topPipe = Instantiate(topPipePrefab, transform.position, Quaternion.identity, transform);
+    }
+
+    public void OnEnabledFromPool()
+    {
+        RandomizePipes();
+    }
+
+    public void OnDisabledFromPool()
+    {
     }
 }

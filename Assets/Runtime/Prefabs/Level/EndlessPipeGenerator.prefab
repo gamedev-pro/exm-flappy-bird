@@ -50,7 +50,9 @@ MonoBehaviour:
   grounds:
   - {fileID: 7698437499041986037}
   - {fileID: 6231395151017278343}
-  pipeSpawnerPrefab: {fileID: 420303708919352372, guid: 08706f807d5d95846af45076efbca72b, type: 3}
+  pipePool:
+    poolRoot: {fileID: 4893941319381380911}
+    prefab: {fileID: 420303708919352372, guid: 08706f807d5d95846af45076efbca72b, type: 3}
   initialDistanceWithoutPipes: 8
   minPipesInFrontOfPlayer: 2
   minDistanceBetweenPipes: 5.5
